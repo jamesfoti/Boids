@@ -2,7 +2,7 @@
 
 ## Where to play?
 Simulation can be played here: **https://jamesfoti.github.io/Boids/index.html**! <br>
-(I recommend expanding the webGL windowing for better viewing)
+(I recommend expanding the WebGL windowing for better viewing)
 
 ## Sources and Citations
 * Boids by Craig Reynolds (creator): http://www.red3d.com/cwr/boids/
