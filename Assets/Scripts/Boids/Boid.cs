@@ -4,20 +4,16 @@ using UnityEngine;
 
 public class Boid : MonoBehaviour {
 
-
-    public float maxSpeed;
-    public Collider collider; // Cached
-
-    public Material boidMaterial; // Cached
-
-    [HideInInspector]
-    public float steerSmoothTime = 10f;
-
     public Flock flock;
+    public Collider collider; // Cached
+    public Material material; // Cached
+    public float maxSpeed;
+
+    
 
     private void Awake() {
         collider = GetComponent<SphereCollider>();
-        boidMaterial = GetComponent<Renderer>().material;
+        material = GetComponent<Renderer>().material;
     }
 
     public void Move(Vector3 velocity) {

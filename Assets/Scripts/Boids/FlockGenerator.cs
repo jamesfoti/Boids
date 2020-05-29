@@ -1,32 +1,44 @@
 ﻿using System.Collections;
 using System.Collections.Generic;
+using System.Runtime.Serialization;
 using UnityEngine;
 
 public class FlockGenerator : MonoBehaviour {
 
-    public Flock flockPrefab;
+    private Flock flock;
+
+    [Range(0, 100)]
+    [Tooltip("Used to spawn a certain number of flocks at Start().")]
     public int flockSpawnCount;
 
-    
+    [HideInInspector]
     public List<Flock> flocks = new List<Flock>();
 
-	public void CreateFlock(Flock flock, int numBoids) {
 
+	private void Awake() {
+        this.flock = GetComponent<Flock>();
+	}
+
+	private void Start() {
+		for (int i = 0; i < flockSpawnCount; i++) {
+            CreateFlock();
+		}
+	}
+
+	public void CreateFlock() {
         float xCord = Random.Range(-50, 50);
         float yCord = Random.Range(-50, 50);
         float zCord = Random.Range(-50, 50);
 
-        Vector3 position = new Vector3(xCord, yCord, zCord);
+        Vector3 randomPosition = new Vector3(xCord, yCord, zCord);
 
-        Flock newFlock = Instantiate(flock);
+        Flock newFlock = Instantiate(this.flock);
         newFlock.gameObject.name = "Flock";
-        newFlock.transform.localPosition = position;
-        newFlock.CreateBoids(numBoids);
+        newFlock.transform.localPosition = randomPosition;
 
-        //List<Boid> boids = newFlock.CreateBoids(numBoids);
         flocks.Add(newFlock);
-        Debug.Log(flocks.Count);
 
+        Debug.Log(flocks.Count);
     }
 
     public void ClearFlocks() {
